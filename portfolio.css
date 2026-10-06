@@ -935,33 +935,36 @@ transition-duration: 0.3s;
 
 
     /* About Card */
-    .about-card {
-        width: 90%;
-        height: 650px;
-        margin: 30px auto;
-        padding-top: 20px;
-    }
+.about-card {
+    width: 90%;
+    height: 650px;
+    margin: 30px auto;
+    padding-top: 20px;
+}
 
-    .card-front,
-    .card-back {
-        padding: 20px;
-    }
+.card-front,
+.card-back {
+    padding: 20px;
+}
 
-    .vertical-text {
-        font-size: 3rem;
-        line-height: 45px;
-        writing-mode: horizontal-tb;
-    }
+.card-back {
+    align-items: flex-start;
+}
 
-    .click-hint {
-        font-size: 16px;
-    }
+.vertical-text {
+    font-size: 3rem;
+    line-height: 45px;
+    writing-mode: horizontal-tb;
+}
 
-    .about-text {
-        font-size: 14px;
-        line-height: 1.5;
-    }
+.click-hint {
+    font-size: 16px;
+}
 
+.about-text {
+    font-size: 14px;
+    line-height: 1.5;
+}
 
     /* Details */
     .details-container {
