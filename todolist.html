@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List with Time</title>
+  <style>
+    body {
+      background: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      padding-top: 50px;
+    }
+
+    .todo-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      width: 450px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .input-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="time"] {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      background-color: #00a86b;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #008f5c;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 10px 12px;
+      border-bottom: 1px solid #eee;
+      flex-direction: column;
+    }
+
+    li.completed span {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    .task-header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .time-info {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 5px;
+      margin-top: 8px;
+    }
+
+    .done-btn, .delete-btn {
+      background-color: #ccc;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .done-btn:hover {
+      background-color: #58d65c;
+    }
+
+    .delete-btn {
+      background-color: #ff4d4d;
+      color: white;
+    }
+
+    .delete-btn:hover {
+      background-color: #d93636;
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-container">
+    <h2>📝 To-Do List</h2>
+    <div class="input-section">
+      <input type="text" id="taskInput" placeholder="Enter a task...">
+      <input type="time" id="startTime">
+      <input type="time" id="endTime">
+      <button onclick="addTask()">Add</button>
+    </div>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+      const taskText = document.getElementById("taskInput").value.trim();
+      const startTime = document.getElementById("startTime").value;
+      const endTime = document.getElementById("endTime").value;
+
+      if (taskText === "") return;
+
+      const li = document.createElement("li");
+
+      const header = document.createElement("div");
+      header.className = "task-header";
+
+      const span = document.createElement("span");
+      span.textContent = taskText;
+
+      const actions = document.createElement("div");
+      actions.className = "actions";
+
+      const doneBtn = document.createElement("button");
+      doneBtn.textContent = "Done✔️";
+      doneBtn.className = "done-btn";
+      doneBtn.onclick = () => li.classList.toggle("completed");
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete🗑️";
+      deleteBtn.className = "delete-btn";
+      deleteBtn.onclick = () => li.remove();
+
+      actions.appendChild(doneBtn);
+      actions.appendChild(deleteBtn);
+      header.appendChild(span);
+
+      const timeInfo = document.createElement("div");
+      timeInfo.className = "time-info";
+      if (startTime || endTime) {
+        timeInfo.textContent = `🕒 ${startTime || "???"} - ${endTime || "???"}`;
+      }
+
+      li.appendChild(header);
+      li.appendChild(timeInfo);
+      li.appendChild(actions);
+
+      document.getElementById("taskList").appendChild(li);
+
+      document.getElementById("taskInput").value = "";
+      document.getElementById("startTime").value = "";
+      document.getElementById("endTime").value = "";
+    }
+  </script>
+</body>
+</html>
